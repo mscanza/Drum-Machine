@@ -1,4 +1,8 @@
+//Code has been refactored into 2 more concise functions. Machine works as instructed, but does not pass test 6, 
+//despite playing audio.  I've included multiple refactor attempts below, each working but failing test 6. 
+
 $(document).ready(function() {
+
     
 $('.drum-pad').click(function(e) { 
     $(this).find("audio").get(0).currentTime = 0;
@@ -8,9 +12,8 @@ $('.drum-pad').click(function(e) {
 });
 
 $(document).keypress(function(event) {
-
 $('.drum-pad').each(function() {
-    if (String.fromCharCode(event.which) === $(this).text().toLowerCase()) {
+    if (String.fromCharCode(event.which) === $(this).text().toLowerCase() || String.fromCharCode(event.which) === $(this).text()) {
         $(this).find("audio").get(0).currentTime = 0;
         $(this).find("audio").get(0).play()
         $('#display').html($(this).attr("id"))
@@ -22,9 +25,12 @@ $('.drum-pad').each(function() {
     },50)
     }
 })
-
 })
+
+
 });
+
+
 // function keyControls(item) {
 //     item.find("audio").get(0).currentTime = 0;
 //     item.find("audio").get(0).play()
