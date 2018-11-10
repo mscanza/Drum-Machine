@@ -39,7 +39,7 @@ body {
 }
 
 .drum-pad {
-    background-color: lightgrey;
+    background-color: lightgrey ;
     height: 18%;
     width: 26%;
     margin: 1rem;
@@ -60,4 +60,10 @@ body {
     width: 85%;
     font-size: 20px;
     color: crimson;
+}
+
+@media (max-width: 470px) {
+    .drum-pad {
+        margin: 0.5rem;
+    }
 }

@@ -1,141 +1,107 @@
 $(document).ready(function() {
-
-    //Array that holds all data
-
-const info = [
-    {
-    letter: "Q",
-    effect: "Cymbals",
-    audio: "http://www.denhaku.com/r_box/sr16/sr16cym/cmbocrsh.wav"   
-    },
-    {
-    letter: "W",
-    effect: "High Hat",
-    audio: "http://www.denhaku.com/r_box/sr16/sr16hat/smallhat.wav"
-    },
-    {
-    letter: "E",
-    effect: "Crash Cymbal",
-    audio: "http://dight310.byu.edu/media/audio/FreeLoops.com/2/2/Crash%20Hit%20003-1698-Free-Loops.com.mp3"
-    },
-    {
-    letter: "A",
-    effect: "Cowbell",
-    audio: "http://www.randomthink.net/labs/html5drums/drumkit/Cow%20Bell.wav"
-    },
-    {
-    letter: "S",
-    effect: "Snare Drum",
-    audio: "http://bigsamples.free.fr/d_kit/snare/snare03.wav"
-    },
-    {
-    letter: "D",
-    effect: "Tom Toms",
-    audio: "http://www.denhaku.com/r_box/sr16/sr16tom/mdsuprtm.wav"
-    },
-    {
-    letter: "Z",
-    effect: "Floor Tom",
-    audio: "http://www.denhaku.com/r_box/sr16/sr16tom/hiflatrm.wav"
-    },
-    {
-    letter: "X",
-    effect: "Bass Drum",
-    audio: "http://dight310.byu.edu/media/audio/FreeLoops.com/3/3/Free%20Kick%20Sample%209-903-Free-Loops.com.mp3"
-    },
-    {
-    letter: "C",
-    effect: "Triangle",
-    audio: "http://www.burnkit2600.com/temp/HR-16/HR-16-WAVs/45-triangle.wav"
-    },
     
-]
+$('.drum-pad').click(function(e) { 
+    $(this).find("audio").get(0).currentTime = 0;
+    $(this).find("audio").get(0).play()
+        $(this).find("audio").get(0).play()
+        $('#display').html(e.target.id)   
+});
 
+$(document).keypress(function(event) {
 
-//functions
-
-let audio;
-
-function playDrum(drum) {
-    $('#display').html(info[drum].effect)
-        audio = new Audio(info[drum].audio)
-        audio.play();
-}
-
-function colorChange(item) {
-    item.css("background-color", "red");
-    setTimeout(function() {
-        item.css("background-color", "lightgrey")
-    }, 100)
-}
-
-
-
-
-//Event Handlers
-
-$('.drum-pad').click(function() {
-    switch($('.drum-pad').index(this)) {
-        case 0: playDrum(0)
-        break;
-        case 1: playDrum(1)
-        break;
-        case 2: playDrum(2)
-        break;
-        case 3: playDrum(3)
-        break;
-        case 4: playDrum(4)
-        break;
-        case 5: playDrum(5)
-        break;
-        case 6: playDrum(6)
-        break;
-        case 7: playDrum(7)
-        break;
-        case 8: playDrum(8)
-        break;
-
+$('.drum-pad').each(function() {
+    if (String.fromCharCode(event.which) === $(this).text().toLowerCase()) {
+        $(this).find("audio").get(0).currentTime = 0;
+        $(this).find("audio").get(0).play()
+        $('#display').html($(this).attr("id"))
+        $(this).css("background-color", "red");
+        setTimeout(function() {
+            $('.drum-pad').each(function() {
+                $(this).css("background-color", "lightgrey");
+            })
+    },50)
     }
 })
 
+})
+});
+// function keyControls(item) {
+//     item.find("audio").get(0).currentTime = 0;
+//     item.find("audio").get(0).play()
+//     $('#display').html(item.attr('id'))
+//     item.css("background-color", "red");  
+// }
+
+// function keyControl(songID) {
+//     songID[0].play()
+//     $('#display').html(songID.parent().attr('id'))
+//     songID.parent().css("background-color", "red");
+//     setTimeout(function() {
+//         songID.parent().css("background-color", "lightgrey")
+//     })
+// }sda
+
+// $(document).keypress(function(event) {
+
+//     for (var i = 0; i < $('.drum-pad').length; i++) {
+//         console.log($('.drum-pad').get(0).html())
+//         let theString = $('.drum-pad').get(i).text()
+    
+//         if (event.which === theString.charCodeAt(0)) {
+//             $('.drum-pad').get(i).find("audio").get(0).play()
+//             $('#display').html($('.drum-pad').get(i).attr('id'))
+//             $('drum-pad').get(i).css("background-color", "red")
+//             setTimeout(function() {
+//                 $('.drum-pad').get(i).css("background-color", "lightgrey")
+//             })
+//         }
+        
+//     }
+
+// })
+
+// $( "li" ).each(function( index ) {
+//     console.log( index + ": " + $( this ).text() );
+//   });
 
 
-$(document).keypress(function(event) {
+
+// $(document).keypress(function(event) {
     
 
-    if (event.which === 113) {
-        playDrum(0);
-        colorChange($('#Q'))
-    }  else if (event.which === 119) {
-            playDrum(1);
-            colorChange($('#W'))
-         } else if (event.which === 101) {
-            playDrum(2);
-            colorChange($('#E'))
-         } else if (event.which === 97) {
-             playDrum(3);
-             colorChange($('#A'))
-         } else if (event.which === 115) {
-             playDrum(4);
-             colorChange($('#S'))
-         } else if (event.which === 100) {
-             playDrum(5);
-             colorChange($('#D'))
-         } else if (event.which === 122) {
-             playDrum(6);
-             colorChange($('#Z'))
-         } else if (event.which === 120) {
-             playDrum(7);
-             colorChange($('#X'))
-         } else if (event.which === 99) {
-             playDrum(8);
-             colorChange($('#C'))
-         }
+//     if (event.which === 81 || event.which === 113) {
+   
+//         keyControls($('#Cymbals'))
+//     }  else if (event.which === 87 || event.which === 119) {
+     
+//         keyControls($('#High-Hat'))
+//          } else if (event.which === 69 || event.which === 101) {
+            
+//             keyControls($('#Crash-Cymbals'))
+//          } else if (event.which === 65 || event.which === 97) {
+        
+//             keyControls($('#Cowbell'))
+//          } else if (event.which === 83 || event.which === 115) {
+         
+//             keyControls($('#Snare-Drum'))
+//          } else if (event.which === 68 || event.which === 100) {
+         
+//             keyControls($('#Tom-Toms'))
+//          } else if (event.which === 90 || event.which === 122) {
+            
+//             keyControls($('#Floor-Tom'))
+//          } else if (event.which === 88 || event.which === 120) {
+            
+//             keyControls($('#Bass-Drum'))
+//          } else if (event.which === 67 || event.which === 99) {
+             
+//             keyControls($('#Triangle'))
+//          }
 
        
-})
+// })
 
 
-});
+
 
 
